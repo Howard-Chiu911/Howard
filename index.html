@@ -3,56 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>加密查詢</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .container {
-            max-width: 400px;
-            margin: auto;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-        }
-        input:focus, button:focus {
-            outline: 2px solid #4CAF50;
-        }
-        button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <title>Encrypt API</title>
 </head>
 <body>
+    <h1>Encrypt Input</h1>
+    <form id="encrypt-form">
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key" required><br><br>
 
-    <div class="container">
-        <h2 style="margin-bottom: 20px;">加密查詢</h2>
-        <form action="https://your-backend-url.com/encrypt" method="POST">
-            <label for="key">Key:</label>
-            <input type="text" id="key" name="key" placeholder="Enter your key" required>
+        <label for="source">Source:</label>
+        <input type="text" id="source" name="source" required><br><br>
 
-            <label for="source">Source:</label>
-            <input type="text" id="source" name="source" placeholder="Enter the source text" required>
+        <label for="createDate">Create Date:</label>
+        <input type="text" id="createDate" name="createDate" required><br><br>
 
-            <label for="createDate">Create Date:</label>
-            <input type="date" id="createDate" name="createDate" required>
+        <button type="submit">Encrypt</button>
+    </form>
 
-            <input type="hidden" name="_csrf" value="your-csrf-token">
+    <h2>Encrypted Result</h2>
+    <pre id="result"></pre>
 
-            <button type="submit">查詢加密結果</button>
-        </form>
-    </div>
+    <script>
+        // 監聽表單提交事件
+        document.getElementById('encrypt-form').addEventListener('submit', async function(event) {
+            event.preventDefault();  // 防止表單重新載入頁面
 
+            // 獲取用戶輸入的值
+            const key = document.getElementById('key').value;
+            const source = document.getElementById('source').value;
+            const createDate = document.getElementById('createDate').value;
+
+            // 構造後端 API 的 URL，並將用戶輸入作為參數傳遞
+            const url = `http://127.0.0.1:5000/api/encrypt?key=${key}&source=${source}&createDate=${createDate}`;
+
+            try {
+                // 發送 GET 請求到後端
+                const response = await fetch(url);
+
+                // 如果回應正常
+                if (response.ok) {
+                    const data = await response.json();  // 解析返回的 JSON 數據
+                    document.getElementById('result').textContent = `Encrypted Result: ${data.encrypted}`;
+                } else {
+                    document.getElementById('result').textContent = 'Error: ' + response.statusText;
+                }
+            } catch (error) {
+                document.getElementById('result').textContent = 'Error: ' + error.message;
+            }
+        });
+    </script>
 </body>
 </html>
