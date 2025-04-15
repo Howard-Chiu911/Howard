@@ -15,8 +15,8 @@ def encrypt_data():
         return jsonify({"error": "Missing parameters"}), 400
     
     try:
-        # 構造要加密的字符串
-        str_check = f"{key}，{source}，{create_date}"
+        # 確保使用半角逗號
+        str_check = f"{key},{source},{create_date}"
         
         # 打印出 str_check 來檢查傳入參數
         print(f"str_check: {str_check}")
