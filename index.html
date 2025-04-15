@@ -40,15 +40,15 @@
                 // 發送 GET 請求到後端
                 const response = await fetch(url);
 
-                // 如果回應正常
+                // 檢查是否返回成功的狀態碼 (200 OK)
                 if (response.ok) {
                     const data = await response.json();  // 解析返回的 JSON 數據
                     document.getElementById('result').textContent = `Encrypted Result: ${data.encrypted}`;
                 } else {
-                    document.getElementById('result').textContent = 'Error: ' + response.statusText;
+                    document.getElementById('result').textContent = `Error: ${response.statusText}`;
                 }
             } catch (error) {
-                document.getElementById('result').textContent = 'Error: ' + error.message;
+                document.getElementById('result').textContent = `Error: ${error.message}`;
             }
         });
     </script>
