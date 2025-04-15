@@ -2,8 +2,9 @@ services:
   - type: web
     name: flask-api
     env: python
-    buildCommand: ""
-    startCommand: gunicorn app:app
-    envVars:
-      - key: FLASK_ENV
-        value: production
+    region: singapore
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    plan: free
+    branch: main
+    autoDeploy: true
