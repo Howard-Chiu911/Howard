@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加密查詢</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>加密查詢</h2>
+        <form action="https://your-backend-url.com/encrypt" method="POST">
+            <label for="key">Key:</label>
+            <input type="text" id="key" name="key" required>
+
+            <label for="source">Source:</label>
+            <input type="text" id="source" name="source" required>
+
+            <label for="createDate">Create Date:</label>
+            <input type="text" id="createDate" name="createDate" required>
+
+            <button type="submit">查詢加密結果</button>
+        </form>
+    </div>
+
+</body>
+</html>
