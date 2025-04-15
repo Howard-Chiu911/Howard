@@ -15,8 +15,13 @@ def encrypt_data():
         return jsonify({"error": "Missing parameters"}), 400
     
     try:
-        # 使用 UTF-8 編碼
+        # 構造要加密的字符串
         str_check = f"{key}，{source}，{create_date}"
+        
+        # 打印出 str_check 來檢查傳入參數
+        print(f"str_check: {str_check}")
+        
+        # 使用 UTF-8 編碼進行 MD5 加密
         encrypted = hashlib.md5(str_check.encode('utf-8')).hexdigest().upper()
         
         # 返回加密結果
