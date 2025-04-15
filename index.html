@@ -78,7 +78,6 @@
         <label for="createDate">創建日期：</label>
         <input type="date" id="createDate" name="createDate" required placeholder="選擇創建日期"><br>
 
-
         <button type="submit">加密</button>
     </form>
 
@@ -104,6 +103,9 @@
 
             // 構造後端 API 的 URL，並將用戶輸入作為參數傳遞
             const url = `http://127.0.0.1:5000/api/encrypt?key=${key}&source=${source}&createDate=${createDate}`;
+            
+            // 打印出即將發送的 URL
+            console.log("Sending URL:", url);
 
             try {
                 // 發送 GET 請求到後端
